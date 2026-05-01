@@ -1,0 +1,11 @@
+// SCSS 入口文件
+
+// 引入 reset
+@use './reset.scss';
+@use './global.scss';
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}

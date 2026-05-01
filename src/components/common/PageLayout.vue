@@ -1,27 +1,16 @@
 <script setup>
-import { useRouter, useRoute } from 'vue-router';
-import { useCacheStore } from '@s/cache.js';
-import { storeToRefs } from 'pinia';
-import { watch } from 'vue';
+import { useLayoutStore } from '@/stores/layout.js';
 
-const router = useRouter();
-const route = useRoute();
-const cacheStore = useCacheStore();
-const { cachedComponents } = storeToRefs(cacheStore);
+const router = useRouter(),
+  route = useRoute();
+const layoutStore = useLayoutStore();
+const { addActive, keepKeyMap } = layoutStore;
+const { keepAliveList } = storeToRefs(layoutStore);
 
-// 记录上一个路由的组件名
-let prevComponentName = '';
-
-// 监听路由变化，页面跳转后缓存上一个页面
-watch(
-  () => route.name,
-  (newName, oldName) => {
-    if (oldName && prevComponentName) {
-      cacheStore.addCache(prevComponentName);
-    }
-    prevComponentName = newName || '';
-  }
-);
+function onPage(str) {
+  router.push({ name: str });
+  addActive(str);
+}
 
 const test404 = () => {
   router.push('/test-404');
@@ -29,74 +18,106 @@ const test404 = () => {
 </script>
 
 <template>
-  <div class="layout">
-    <header class="header">
-      <h1>My App</h1>
-      <div class="header-buttons">
-        <button @click="router.push('/')">首页</button>
-        <button @click="router.push('/test')">测试</button>
-        <button @click="test404">测试 404</button>
-      </div>
-    </header>
+  <div id="layoutPage">
+    <aside id="asideLeft">123</aside>
+    <aside id="asideRight">
+      <header class="header">
+        <h1>My App</h1>
+        <div class="header-buttons">
+          <button @click="onPage('Home')">首页</button>
+          <button @click="onPage('Test')">测试</button>
+          <button @click="test404">测试 404</button>
+        </div>
+      </header>
 
-    <main class="main">
-      <router-view v-slot="{ Component, route: currentRoute }">
-        <keep-alive :include="cachedComponents">
-          <component :is="Component" :key="currentRoute.name" />
-        </keep-alive>
-      </router-view>
-    </main>
+      <main class="main">
+        <router-view #default="{ Component, route: currentRoute }">
+          <keep-alive :include="keepAliveList">
+            <component :is="Component" :key="keepKeyMap.get(currentRoute.name).key" />
+          </keep-alive>
+        </router-view>
+      </main>
 
-    <footer class="footer">
-      <p>Footer</p>
-    </footer>
+      <footer class="footer">
+        <p>Footer</p>
+      </footer>
+    </aside>
   </div>
 </template>
 
-<style scoped>
-.layout {
+<style lang="scss" scoped>
+$sideLeftWidth: 270px;
+$asideGap: 0;
+$mainPd: (
+  top: 10px,
+  right: 10px,
+  bottom: 10px,
+  left: 10px,
+);
+$headerPd: (
+  top: 10px,
+  right: 10px,
+  bottom: 10px,
+  left: 10px,
+);
+
+#layoutPage {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  gap: $asideGap;
 }
-
-.header {
-  padding: 1rem 2rem;
-  background-color: #42b983;
-  color: white;
+#asideLeft {
+  width: $sideLeftWidth;
+  background-color: blue;
+}
+#asideRight {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+  flex-direction: column;
+  width: calc(100% - $sideLeftWidth);
 
-.header h1 {
-  margin: 0;
-  font-size: 1.5rem;
-}
+  .header {
+    @each $key, $value in $headerPd {
+      padding-#{$key}: $value;
+    }
+    background-color: #42b983;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-.header-buttons button {
-  padding: 0.5rem 1rem;
-  margin-left: 0.5rem;
-  background-color: white;
-  color: #42b983;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  .header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
 
-.main {
-  flex: 1;
-  padding: 2rem;
-}
+  .header-buttons button {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    background-color: white;
+    color: #42b983;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
-.footer {
-  padding: 1rem 2rem;
-  background-color: #f5f5f5;
-  text-align: center;
-  color: #666;
-}
+  .main {
+    @each $key, $value in $mainPd {
+      padding-#{$key}: $value;
+    }
+    flex: 1;
+    background-color: red;
+    // padding: 2rem;
+  }
 
-.footer p {
-  margin: 0;
+  .footer {
+    padding: 10px 20px 20px;
+    background-color: #f5f5f5;
+    text-align: center;
+    color: #666;
+    & p {
+      margin: 0;
+    }
+  }
 }
 </style>

@@ -21,16 +21,20 @@ const goHome = () => {
 
 <style scoped>
 .container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 1rem;
   text-align: center;
 }
 
 .content {
   max-width: 400px;
+  padding: 1rem;
 }
 
 .code {

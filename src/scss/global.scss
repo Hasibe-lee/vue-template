@@ -1,0 +1,72 @@
+$btnColors: (
+  primary: (
+    start: blue,
+    end: red,
+  ),
+  warning: (
+    start: #cca,
+    end: #dcf,
+  ),
+  success: (
+    start: #dbc,
+    end: #cbd,
+  ),
+  info: (
+    start: rgb(155, 228, 82),
+    end: #dac,
+  ),
+);
+// $btnColors: (
+//   primary: (
+//     blue,
+//     red,
+//   ),
+//   warning: (
+//     #cca,
+//     #dcf,
+//   ),
+//   success: (
+//     #dbc,
+//     #cbd,
+//   ),
+//   info: (
+//     rgb(155, 228, 82),
+//     #dac,
+//   ),
+// );
+
+@each $type, $props in $btnColors {
+  .g_btn {
+    position: relative;
+    margin: 10px;
+    box-shadow: 0 2px 0 1px #333;
+    outline: none;
+    border: 0;
+    width: fit-content;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    // transition: box-shadow;
+    &.#{$type} {
+      // background-image: linear-gradient(to right, nth($props, 1), nth($props, 2));
+      background-image: linear-gradient(to right, map-get($props, 'start'), map-get($props, 'end'));
+    }
+
+    &.round {
+      border-radius: 50%;
+    }
+
+    // &::before {
+    //   position: absolute;
+    //   display: block;
+    //   inset: 0;
+    //   content: '';
+    // }
+
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0 1px 0px 1px #333;
+    }
+  }
+}
