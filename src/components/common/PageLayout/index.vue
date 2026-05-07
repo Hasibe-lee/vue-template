@@ -5,5 +5,5 @@ const comName = computed(() => files[`./components/${layoutType.value}.vue`]);
 </script>
 
 <template>
-  <component v-bind="$attrs" :is="comName"></component>
+  <component :is="comName"></component>
 </template>
