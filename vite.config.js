@@ -4,7 +4,9 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import autoRouter from './src/plugins/auto-router.js'
+import vueComponents from 'unplugin-vue-components/vite';
 import AutoImport from 'unplugin-auto-import/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 // import * as utils from './src/utils';
 // const autoDirs = {
 //   utils: Object.keys(utils)
@@ -18,12 +20,21 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     autoRouter(),
+    vueComponents({
+      resolvers: [ElementPlusResolver()],
+      dirs: ['src/components/common', 'src/components'],
+    }),
     AutoImport({
       imports: [
         'vue',           // 自动导入 ref, computed, onMounted 等
         'vue-router',    // 自动导入 useRoute, useRouter 等
         'pinia',         // 自动导入 defineStore, storeToRefs 等
+        '@vueuse/core',
+        {
+          vue: ['defineEmits', 'defineExpose', 'defineProps'],
+        }
       ],
+      resolvers: [ElementPlusResolver()],
       // resolvers: [
       //   name => {
       //     for (const k in autoDirs) {
@@ -44,6 +55,17 @@ export default defineConfig({
     alias: {
       '@': aliasFun(),
       '@s': aliasFun('./src/stores'),
+    },
+  },
+  css: {
+    preprocessorOptions: { // css 预处理器
+      scss: {
+        charset: false,
+        additionalData: `
+            @use "sass:math";
+            `,
+        // @import "src/scss/variate.scss";
+      },
     },
   },
 })

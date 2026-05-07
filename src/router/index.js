@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { autoRoutes, notFoundRoute } from '@/routes/auto-routes.js';
-import PageLayout from '@/components/common/PageLayout.vue';
+import PageLayout from '@/components/common/PageLayout/index.vue';
+// import PageLayout from '@/components/common/PageLayout.vue';
 import intercept from './intercept';
 
 const router = createRouter({

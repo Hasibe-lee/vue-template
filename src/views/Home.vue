@@ -55,12 +55,6 @@ onUnmounted(() => {
     <p class="hint">（每秒自动加1）</p>
     <button class="g_btn" @click="count++">+1</button>
     <button class="g_btn" @click="init()">重置</button>
-
-    <p>
-      Visit
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a>
-      to read the documentation
-    </p>
   </div>
 </template>
 

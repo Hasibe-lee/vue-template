@@ -52,6 +52,9 @@ export default defineConfig([
       "provide": "readonly",
       "inject": "readonly",
       "markRaw": "readonly",
+      'defineEmits': "readonly",
+      'defineExpose': "readonly",
+      'defineProps': "readonly",
       /* vue-router */
       "useRoute": "readonly",
       "useRouter": "readonly",

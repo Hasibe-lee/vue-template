@@ -209,6 +209,10 @@
   },
   "globals": {
     /* vue3 */
+    "defineEmits": "readonly",
+    "defineExpose": "readonly",
+    "defineProps": "readonly",
+    "useTemplateRef": "readonly",
     "defineAsyncComponent": "readonly",
     "createApp": "readonly",
     "getCurrentInstance": "readonly",

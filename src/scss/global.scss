@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 $btnColors: (
   primary: (
     start: blue,
@@ -50,7 +52,7 @@ $btnColors: (
     // transition: box-shadow;
     &.#{$type} {
       // background-image: linear-gradient(to right, nth($props, 1), nth($props, 2));
-      background-image: linear-gradient(to right, map-get($props, 'start'), map-get($props, 'end'));
+      background-image: linear-gradient(to right, map.get($props, 'start'), map.get($props, 'end'));
     }
 
     &.round {
