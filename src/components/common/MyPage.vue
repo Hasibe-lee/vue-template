@@ -134,7 +134,9 @@ $contentPd: (
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   .page_header {
+    flex-shrink: 0;
     display: flex;
     background-color: #ccc;
     padding: 10px 20px 10px;
@@ -148,7 +150,12 @@ $contentPd: (
     }
     flex: 1;
     height: 0;
+    // min-height: 0;
     overflow: hidden;
+  }
+
+  .page_footer {
+    flex-shrink: 0;
   }
 }
 </style>

@@ -25,10 +25,10 @@ usePage((once) => {
 <template>
   <MyPage>
     <template #default="{ maxHeight }">
-      <!-- <el-table :data="pagingList" border :max-height="maxHeight">
+      <el-table :data="pagingList" border :max-height="maxHeight">
         <el-table-column v-for="item in 20" label="id" prop="id" min-width="100"></el-table-column>
-      </el-table> -->
-      <div class="test_wrap">
+      </el-table>
+      <!-- <div class="test_wrap">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ut ullam dolores deserunt
         amet doloribus pariatur nisi ipsum, cum fugit voluptas tempora iste impedit corrupti
         mollitia cupiditate unde totam rerum! Tenetur molestiae, vitae tempora reiciendis, enim
@@ -81,6 +81,13 @@ usePage((once) => {
         voluptatem voluptate itaque aut nihil, neque tempora et, eos molestiae? Nisi ipsa aut
         nesciunt voluptatibus repellendus, et quod laborum delectus! Atque beatae optio deserunt
         enim sapiente ab.
+      </div> -->
+    </template>
+    <template #down>
+      <div class="down_btn_wrap">
+        <el-button type="warning">填充</el-button>
+        <el-button type="primary">确定</el-button>
+        <el-button>取消</el-button>
       </div>
     </template>
   </MyPage>

@@ -158,7 +158,6 @@ $headerPd: (
   }
 
   .header h1 {
-    margin: 0;
     font-size: 1.5rem;
   }
 
@@ -177,7 +176,7 @@ $headerPd: (
       padding-#{$key}: $value;
     }
     flex: 1;
-    min-height: 0;
+    height: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
