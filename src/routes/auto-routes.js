@@ -1,5 +1,5 @@
-// 自动生成的文件，请勿手动修改
-// 生成时间: 2026/5/8 20:27:16
+// Auto-generated file. Do not edit manually.
+// Generated at: 2026/5/8 21:33:21
 
 export const autoRoutes = [
   {
@@ -8,9 +8,14 @@ export const autoRoutes = [
     component: () => import('@/views/Home.vue')
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: () => import('@/views/Test.vue')
+    path: '/testpage/add',
+    name: 'TestPageAdd',
+    component: () => import('@/views/TestPage/add.vue')
+  },
+  {
+    path: '/testpage',
+    name: 'TestPage',
+    component: () => import('@/views/TestPage/index.vue')
   }
 ]
 

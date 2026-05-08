@@ -212,6 +212,7 @@
     "defineEmits": "readonly",
     "defineExpose": "readonly",
     "defineProps": "readonly",
+    "defineOptions": "readonly",
     "useTemplateRef": "readonly",
     "defineAsyncComponent": "readonly",
     "createApp": "readonly",

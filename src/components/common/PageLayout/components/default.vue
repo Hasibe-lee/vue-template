@@ -89,7 +89,7 @@ const test404 = () => {
         <h1>My App</h1>
         <div class="header_buttons">
           <button @click="onPage('Home')">首页</button>
-          <button @click="onPage('Test')">测试</button>
+          <button @click="onPage('TestPage')">测试</button>
           <button @click="test404">测试 404</button>
         </div>
       </header>
@@ -180,7 +180,7 @@ $headerPd: (
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background-color: red;
+    // background-color: red;
   }
 
   .main {

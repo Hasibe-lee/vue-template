@@ -22,6 +22,8 @@ const props = defineProps({
   },
 });
 
+const route = useRoute();
+
 const pdt = ref(null),
   pdr = ref(null),
   pdb = ref(null),
@@ -47,16 +49,19 @@ const pageHeaderPaddingY = computed(() => {
     if (!el) return 0;
     const style = window.getComputedStyle(el);
     return parseFloat(style.paddingTop || '0') + parseFloat(style.paddingBottom || '0');
+  }),
+  maxHeight = computed(() => {
+    const height =
+      pageWrapHeight.value -
+      pageHeaderHeight.value -
+      pageFooterHeight.value -
+      pageContentPaddingY.value -
+      pageHeaderPaddingY.value;
+    return height > 0 ? height : 0;
   });
 
-const maxHeight = computed(() => {
-  const height =
-    pageWrapHeight.value -
-    pageHeaderHeight.value -
-    pageFooterHeight.value -
-    pageContentPaddingY.value -
-    pageHeaderPaddingY.value;
-  return height > 0 ? height : 0;
+const pageName = computed(() => {
+  return route.name;
 });
 
 function setMainPd(pdList = []) {
@@ -104,10 +109,10 @@ watch(
   <div ref="pageWrap" class="my_page_wrap">
     <div ref="pageHeader" class="page_header">
       <div class="header">
-        <slot name="header"> page-header </slot>
+        <slot name="header">{{ pageName }}</slot>
       </div>
       <div class="page_header_right">
-        <slot name="header-right"> page_header_right </slot>
+        <slot name="header-right"></slot>
       </div>
     </div>
     <div ref="pageContent" class="page_content">
@@ -138,6 +143,7 @@ $contentPd: (
   .page_header {
     flex-shrink: 0;
     display: flex;
+    align-items: center;
     background-color: #ccc;
     padding: 10px 20px 10px;
     .page_header_right {

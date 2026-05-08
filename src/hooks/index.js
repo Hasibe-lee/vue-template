@@ -5,9 +5,14 @@ import { useLayoutStore } from '@/stores/layout.js';
  * @param {Function} cb - 重置回调函数，参数 once 为 true 时执行
  */
 export function usePage(cb, { deactivatedFn } = {}) {
-  const route = useRoute(), pageName = route.name;
+  const route = useRoute(), router = useRouter(), pageName = route.name;
   const layoutStore = useLayoutStore();
-  const { keepKeyMap } = layoutStore;
+  const { keepKeyMap, removeActive } = layoutStore;
+
+  function onBack(...args) {
+    removeActive(pageName);
+    router.back(...args);
+  }
 
   onActivated(() => {
     const keep = keepKeyMap.get(pageName);
@@ -22,4 +27,8 @@ export function usePage(cb, { deactivatedFn } = {}) {
       deactivatedFn();
     }
   });
+
+  return {
+    onBack
+  }
 }

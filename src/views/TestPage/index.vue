@@ -24,6 +24,9 @@ usePage((once) => {
 
 <template>
   <MyPage>
+    <template #header-right>
+      <el-button @click="$router.push({ name: 'TestPageAdd' })">新增</el-button>
+    </template>
     <template #default="{ maxHeight }">
       <el-table :data="pagingList" border :max-height="maxHeight">
         <el-table-column v-for="item in 20" label="id" prop="id" min-width="100"></el-table-column>
