@@ -1,12 +1,13 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import autoRouter from './src/plugins/auto-router.js'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueDevTools from 'vite-plugin-vue-devtools';
+import autoRouter from './src/plugins/auto-router.js';
 import vueComponents from 'unplugin-vue-components/vite';
-import AutoImport from 'unplugin-auto-import/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import ElementPlus from 'unplugin-element-plus/vite';
+import AutoImport from 'unplugin-auto-import/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 // import * as utils from './src/utils';
 // const autoDirs = {
 //   utils: Object.keys(utils)
@@ -24,6 +25,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
       dirs: ['src/components/common', 'src/components'],
     }),
+    ElementPlus(),
     AutoImport({
       imports: [
         'vue',           // 自动导入 ref, computed, onMounted 等
@@ -48,8 +50,7 @@ export default defineConfig({
         './src/utils',        // 导入 utils 目录下的所有导出
         './src/hooks',        // 导入 utils 目录下的所有导出
       ],
-    })
-
+    }),
   ],
   resolve: {
     alias: {

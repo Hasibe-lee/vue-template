@@ -161,6 +161,7 @@ $contentPd: (
   }
 
   .page_footer {
+    display: flow-root;
     flex-shrink: 0;
   }
 }

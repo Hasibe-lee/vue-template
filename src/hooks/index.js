@@ -1,4 +1,5 @@
 import { useLayoutStore } from '@/stores/layout.js';
+import { ElMessage, ElMessageBox } from 'element-plus';
 
 /**
  * 页面缓存钩子
@@ -12,6 +13,20 @@ export function usePage(cb, { deactivatedFn } = {}) {
   function onBack(...args) {
     removeActive(pageName);
     router.back(...args);
+  }
+
+  function onCancel() {
+    ElMessageBox.confirm('确定取消吗？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+    })
+      .then(() => {
+        onBack();
+      })
+      .catch(() => {
+        ElMessage.info('已取消');
+      });
   }
 
   onActivated(() => {
@@ -29,6 +44,7 @@ export function usePage(cb, { deactivatedFn } = {}) {
   });
 
   return {
-    onBack
+    onBack,
+    onCancel,
   }
 }

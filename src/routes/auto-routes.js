@@ -1,5 +1,5 @@
 // Auto-generated file. Do not edit manually.
-// Generated at: 2026/5/8 22:16:02
+// Generated at: 2026/5/10 15:30:41
 
 export const autoRoutes = [
   {

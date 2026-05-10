@@ -171,23 +171,26 @@ $headerPd: (
     cursor: pointer;
   }
 
+  // #asideRight 是纵向 flex 容器（flex-direction: column）
+  // .main 写了 flex: 1，理论上占剩余高度
+  // 但 .main 里有内容时，默认最小尺寸会受内容影响，可能把父级撑开，导致滚动/高度计算异常
+  // height: 0 把基准高度压到 0，再靠 flex: 1 分配空间，避免按内容高度膨胀
+
   .main {
     @each $key, $value in $mainPd {
       padding-#{$key}: $value;
     }
     flex: 1;
-    height: 0;
+    min-height: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    // background-color: red;
-  }
 
-  .main {
     :deep() {
       .el-scrollbar {
         height: 100%;
         .el-scrollbar__view {
+          display: flow-root;
           height: 100%;
         }
       }

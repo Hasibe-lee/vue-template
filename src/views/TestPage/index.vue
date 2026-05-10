@@ -86,13 +86,6 @@ usePage((once) => {
         enim sapiente ab.
       </div> -->
     </template>
-    <template #down>
-      <div class="down_btn_wrap">
-        <el-button type="warning">填充</el-button>
-        <el-button type="primary">确定</el-button>
-        <el-button>取消</el-button>
-      </div>
-    </template>
   </MyPage>
 </template>
 
