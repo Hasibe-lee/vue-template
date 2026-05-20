@@ -255,7 +255,9 @@
     "useWindowSize": "readonly",
     /* 自定义 */
     "usePage": "readonly",
-    "getUniqueId": "readonly"
+    "getUniqueId": "readonly",
+    "createSingleton": "readonly",
+    "useSingleton": "readonly"
     // "rootDir": "readonly",
     // "fontSizeScale": "readonly",
     // "responsive": "readonly",

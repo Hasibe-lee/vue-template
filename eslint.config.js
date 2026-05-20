@@ -69,6 +69,8 @@ export default defineConfig([
       "useMutationObserver": "readonly",
       "useWindowSize": "readonly",
       /* 自定义 */
+      "createSingleton": "readonly",
+      "useSingleton": "readonly",
       "rootDir": "readonly",
       "fontSizeScale": "readonly",
       "responsive": "readonly",
@@ -114,7 +116,7 @@ export default defineConfig([
       "isEqual": "readonly",
       "isWhite": "readonly",
       "numberToChinese": "readonly",
-      "isPointInPolygon": "readonly"
+      "isPointInPolygon": "readonly",
     }
   },
 

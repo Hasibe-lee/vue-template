@@ -25,7 +25,7 @@ export function usePage(cb, { deactivatedFn } = {}) {
         onBack();
       })
       .catch(() => {
-        ElMessage.info('已取消');
+        // ElMessage.info('已取消');
       });
   }
 

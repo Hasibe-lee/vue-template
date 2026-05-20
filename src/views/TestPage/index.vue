@@ -1,13 +1,29 @@
 <script setup>
 import { ref } from 'vue';
 import { useLayoutStore } from '@/stores/layout.js';
+import { getTest } from '@/api/test.js';
 
 const message = ref('这是 Test 页面');
 const cacheStore = useLayoutStore();
 const pagingList = ref([]);
-Array.from({ length: 50 }).forEach((_, $i) => {
-  pagingList.value.push({ id: $i });
+Array.from({ length: 0 }).forEach((_, $i) => {
+  pagingList.value.push({ id: $i + 1 });
 });
+
+const p = getTest();
+// 正常写法
+// getTest().then((res) => {
+//   console.log(res);
+// });
+// 取消请求写法
+// setTimeout(() => {
+//   p.abort();
+// }, 2000);
+// p.then((res) => {
+//   console.log(res);
+// }).catch((err) => {
+//   console.log(err);
+// });
 
 // 重置首页缓存
 const resetHomeCache = () => {

@@ -17,13 +17,17 @@ const aliasFun = (str = './src') => fileURLToPath(new URL(str, import.meta.url))
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+    // proxy: {}
+  },
   plugins: [
     vue(),
     vueDevTools(),
     autoRouter(),
     vueComponents({
       resolvers: [ElementPlusResolver()],
-      dirs: ['src/components/common', 'src/components'],
+      dirs: ['src/components/common', 'src/components', 'src/components/*'],
     }),
     ElementPlus(),
     AutoImport({
